@@ -1,0 +1,9 @@
+.team-member {
+  text-align: center;
+}
+.team-member img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
