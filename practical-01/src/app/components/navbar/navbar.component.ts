@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
 })
 export class NavbarComponent {
   toggleNav(toggleBtn: HTMLButtonElement) {
-    toggleBtn.click();
+    if (!toggleBtn.classList.contains('collapsed')) toggleBtn.click();
   }
   @Input({ required: true }) routes: any[] = [];
   @Input({ required: true }) currentRoute: string = '';
