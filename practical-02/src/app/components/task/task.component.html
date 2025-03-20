@@ -1,14 +1,17 @@
 <li
-  class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-violet-50 transition cursor-default h-15"
+  class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-violet-50 hover:no-underline transition-all cursor-default h-15"
 >
   <div class="flex items-center space-x-3">
     <input
       type="checkbox"
+      [checked]="task.isCompleted"
+      (change)="toggleStatus()"
       class="form-checkbox h-5 w-5 text-blue-500 cursor-pointer"
     />
     <span class="text-lg"
       ><a
         class="text-gray-900 hover:text-purple-800 focus:outline-none"
+        [class]="task.isCompleted ? 'line-through' : ''"
         [routerLink]="['/tasks', task.id]"
         >{{ task.name }}</a
       ></span

@@ -11,7 +11,11 @@ import { RouterLink } from '@angular/router';
 export class TaskComponent {
   @Input({ required: true }) task!: Task;
   @Output() delete = new EventEmitter();
+  @Output() update = new EventEmitter<Task>();
   onDeleteTask() {
     this.delete.emit(this.task.id);
+  }
+  toggleStatus() {
+    this.update.emit({ ...this.task, isCompleted: !this.task.isCompleted });
   }
 }

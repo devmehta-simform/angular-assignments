@@ -22,4 +22,9 @@ export class TasksComponent {
   deleteTask(id: string) {
     this.tasks = this.taskService.deleteTaskById(id);
   }
+  updateTask(task: Task) {
+    this.tasks = this.taskService.updateTaskById(task.id, {
+      isCompleted: task.isCompleted,
+    });
+  }
 }
