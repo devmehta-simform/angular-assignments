@@ -4,10 +4,11 @@ import { Task } from '../../models/task.model';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ButtonComponent } from '../shared/button/button.component';
 import { DatePipe } from '@angular/common';
+import { ErrorComponent } from '../shared/error/error.component';
 
 @Component({
   selector: 'app-task-details',
-  imports: [ButtonComponent, RouterLink, DatePipe],
+  imports: [ButtonComponent, RouterLink, DatePipe, ErrorComponent],
   templateUrl: './task-details.component.html',
   styleUrl: './task-details.component.css',
 })

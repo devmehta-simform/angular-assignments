@@ -44,21 +44,25 @@ export class TaskService {
   ];
   constructor() {}
   getTasks() {
-    return this.tasks;
+    // return this.tasks // bug! will actually send the reference directly of the actual object
+    return [...this.tasks];
   }
   getTaskById(id: string) {
     return this.tasks.find((task) => task.id === id);
   }
   createTask(task: Pick<Task, 'name' | 'body' | 'createdAt'>) {
     this.tasks.push({ ...task, id: crypto.randomUUID(), isCompleted: false });
+    return [...this.tasks];
   }
   deleteTaskById(id: string) {
     const targetTaskIndex = this.tasks.findIndex((task) => task.id === id);
     if (targetTaskIndex !== -1) this.tasks.splice(targetTaskIndex, 1);
+    return [...this.tasks];
   }
   updateTaskById(id: string, task: Partial<Task>) {
     const targetTaskIndex = this.tasks.findIndex((task) => task.id === id);
     if (targetTaskIndex !== -1)
       this.tasks[targetTaskIndex] = { ...this.tasks[targetTaskIndex], ...task };
+    return [...this.tasks];
   }
 }

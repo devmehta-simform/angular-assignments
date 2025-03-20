@@ -8,3 +8,8 @@
 html {
   background-color: whitesmoke;
 }
+
+::selection {
+  color: #2a4365; /* Darker blue for text */
+  background: #b3d9f2; /* Pastel blue background */
+}

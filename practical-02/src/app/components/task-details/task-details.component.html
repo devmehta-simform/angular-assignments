@@ -32,14 +32,9 @@
       </p>
     </div>
     } @else {
-    <div
-      class="text-center p-4 bg-yellow-100 border border-yellow-500 rounded-lg"
-    >
-      <h2 class="text-xl font-semibold text-gray-700">Task Not Found</h2>
-      <p class="text-gray-600">
-        The task you're looking for does not exist or has been deleted.
-      </p>
-    </div>
+    <app-error>
+      The task you're looking for does not exist or has been deleted.
+    </app-error>
     }
   </div>
   <div class="flex justify-end mt-4">

@@ -3,10 +3,11 @@ import { ButtonComponent } from '../shared/button/button.component';
 import { Task } from '../../models/task.model';
 import { TaskComponent } from '../task/task.component';
 import { TaskService } from '../../services/task-service/task.service';
+import { ErrorComponent } from '../shared/error/error.component';
 
 @Component({
   selector: 'app-tasks',
-  imports: [ButtonComponent, TaskComponent],
+  imports: [ButtonComponent, TaskComponent, ErrorComponent],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css',
 })
@@ -17,5 +18,8 @@ export class TasksComponent {
   }
   clickHandler() {
     console.log('clicked');
+  }
+  deleteTask(id: string) {
+    this.tasks = this.taskService.deleteTaskById(id);
   }
 }
