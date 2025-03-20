@@ -5,3 +5,6 @@
 *::before {
   font-family: "Poppins";
 }
+html {
+  background-color: whitesmoke;
+}

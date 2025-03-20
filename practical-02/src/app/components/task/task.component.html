@@ -1,12 +1,18 @@
 <li
-  class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition cursor-default"
+  class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-green-50 transition cursor-default"
 >
   <div class="flex items-center space-x-3">
     <input
       type="checkbox"
       class="form-checkbox h-5 w-5 text-blue-500 cursor-pointer"
     />
-    <span class="text-lg">{{ task.name }}</span>
+    <span class="text-lg"
+      ><a
+        class="text-gray-900 hover:text-blue-400 focus:outline-none"
+        [routerLink]="['/tasks', task.id]"
+        >{{ task.name }}</a
+      ></span
+    >
   </div>
   <span class="text-sm text-gray-500">
     {{ task.createdAt | date : "fullDate" }}
