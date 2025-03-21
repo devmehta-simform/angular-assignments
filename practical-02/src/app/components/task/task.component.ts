@@ -14,7 +14,8 @@ export class TaskComponent {
   @Output() update = new EventEmitter<Task>();
   @Output() toggleStatus = new EventEmitter<Task>();
   onDeleteTask() {
-    this.delete.emit(this.task.id);
+    if (confirm(`are you sure you want to delete task: '${this.task.name}'?`))
+      this.delete.emit(this.task.id);
   }
   onToggleStatus() {
     this.toggleStatus.emit({
