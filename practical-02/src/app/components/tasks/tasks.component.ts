@@ -18,7 +18,11 @@ export class TasksComponent {
   constructor(private taskService: TaskService) {
     this.tasks = this.taskService.getTasks();
   }
-  clickHandler() {
+  toggleIsAdding() {
+    this.isAdding = !this.isAdding;
+  }
+  createTask(task: Task) {
+    this.tasks = this.taskService.createTask(task);
     this.isAdding = !this.isAdding;
   }
   deleteTask(id: string) {

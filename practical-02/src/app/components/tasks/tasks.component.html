@@ -11,9 +11,12 @@
   <app-error> No tasks found. Create a new one. </app-error>
   }
 </ul>
-<app-task-form [class]="isAdding ? 'visible' : 'hidden'" />
+<app-task-form
+  (formSubmit)="createTask($event)"
+  [class]="isAdding ? 'visible' : 'hidden'"
+/>
 <div class="flex justify-end mt-4">
-  <app-button (click)="clickHandler()">
+  <app-button (click)="toggleIsAdding()">
     {{ isAdding ? "Close" : "Add" }}
   </app-button>
 </div>
