@@ -14,23 +14,33 @@ import { TaskFormComponent } from '../shared/task-form/task-form.component';
 })
 export class TasksComponent {
   tasks: Task[];
-  isAdding: boolean = false;
+  taskToUpdate?: Task;
+  isAddingOrUpdating: boolean = false;
   constructor(private taskService: TaskService) {
     this.tasks = this.taskService.getTasks();
   }
-  toggleIsAdding() {
-    this.isAdding = !this.isAdding;
+  toggleIsAddingOrUpdating() {
+    this.isAddingOrUpdating = !this.isAddingOrUpdating;
   }
   createTask(task: Task) {
     this.tasks = this.taskService.createTask(task);
-    this.isAdding = !this.isAdding;
   }
   deleteTask(id: string) {
     this.tasks = this.taskService.deleteTaskById(id);
   }
   updateTask(task: Task) {
-    this.tasks = this.taskService.updateTaskById(task.id, {
-      isCompleted: task.isCompleted,
-    });
+    this.tasks = this.taskService.updateTaskById(task.id, task);
+  }
+  handleUpdateTask(task: Task) {
+    this.taskToUpdate = task;
+    this.isAddingOrUpdating = !this.isAddingOrUpdating;
+  }
+  handleFormSubmit(task: Task) {
+    if (this.taskService.getTaskById(task.id)) {
+      this.updateTask(task);
+    } else {
+      this.createTask(task);
+    }
+    this.isAddingOrUpdating = !this.isAddingOrUpdating;
   }
 }

@@ -5,18 +5,19 @@
     class="snap-start"
     (toggleStatus)="updateTask($event)"
     (delete)="deleteTask($event)"
+    (update)="handleUpdateTask($event)"
     [task]="task"
   />
   } } @else{
   <app-error> No tasks found. Create a new one. </app-error>
   }
 </ul>
-<app-task-form
-  (formSubmit)="createTask($event)"
-  [class]="isAdding ? 'visible' : 'hidden'"
-/>
+@if(isAddingOrUpdating){<app-task-form
+  [updateTask]="taskToUpdate"
+  (formSubmit)="handleFormSubmit($event)"
+/>}
 <div class="flex justify-end mt-4">
-  <app-button (click)="toggleIsAdding()">
-    {{ isAdding ? "Close" : "Add" }}
+  <app-button (click)="toggleIsAddingOrUpdating()">
+    {{ isAddingOrUpdating ? "Close" : "Add" }}
   </app-button>
 </div>

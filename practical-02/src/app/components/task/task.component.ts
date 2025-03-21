@@ -23,6 +23,7 @@ export class TaskComponent {
     });
   }
   onEditTask() {
-    this.update.emit(this.task);
+    // bug! this.update.emit(this.task); // here we send original object itself
+    this.update.emit({ ...this.task });
   }
 }
