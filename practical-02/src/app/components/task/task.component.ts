@@ -12,10 +12,17 @@ export class TaskComponent {
   @Input({ required: true }) task!: Task;
   @Output() delete = new EventEmitter();
   @Output() update = new EventEmitter<Task>();
+  @Output() toggleStatus = new EventEmitter<Task>();
   onDeleteTask() {
     this.delete.emit(this.task.id);
   }
-  toggleStatus() {
-    this.update.emit({ ...this.task, isCompleted: !this.task.isCompleted });
+  onToggleStatus() {
+    this.toggleStatus.emit({
+      ...this.task,
+      isCompleted: !this.task.isCompleted,
+    });
+  }
+  onEditTask() {
+    this.update.emit(this.task);
   }
 }
