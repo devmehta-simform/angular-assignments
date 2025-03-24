@@ -1,0 +1,43 @@
+<div>
+  <h1 class="text-3xl font-extrabold text-center text-gray-800 mb-6">
+    Task Details
+  </h1>
+  <div class="space-y-4">
+    @if (task) {
+
+    <!-- <div>
+      <h2 class="text-xl font-semibold text-gray-700">ID</h2>
+      <p class="text-gray-600">{{ task.id }}</p>
+    </div> -->
+
+    <div>
+      <h2 class="text-xl font-semibold text-gray-700">Name</h2>
+      <p class="text-gray-600">{{ task.name }}</p>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-semibold text-gray-700">Created At</h2>
+      <p class="text-gray-600">{{ task.createdAt | date : "fullDate" }}</p>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-semibold text-gray-700">Description</h2>
+      <p class="text-gray-600">{{ task.body }}</p>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-semibold text-gray-700">Status</h2>
+      <p class="text-gray-600">
+        {{ task.isCompleted ? "Completed" : "Pending" }}
+      </p>
+    </div>
+    } @else {
+    <app-error>
+      The task you're looking for does not exist or has been deleted.
+    </app-error>
+    }
+  </div>
+  <div class="flex justify-end mt-4">
+    <a routerLink="/"><app-button> Go Back </app-button></a>
+  </div>
+</div>

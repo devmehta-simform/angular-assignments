@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+*,
+*::after,
+*::before {
+  font-family: "Poppins";
+}
+html {
+  background-color: whitesmoke;
+}
+
+::selection {
+  color: #2a4365; /* Darker blue for text */
+  background: #b3d9f2; /* Pastel blue background */
+}
