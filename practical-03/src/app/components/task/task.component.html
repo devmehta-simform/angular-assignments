@@ -1,5 +1,6 @@
 <li
   class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-violet-50 hover:no-underline cursor-default h-15"
+  [class]="colorsEnum[task.status]"
 >
   <div class="flex items-center space-x-3">
     <input

@@ -13,3 +13,11 @@ export enum Colors {
   static = 'white',
   created = 'green',
 }
+
+// Colors enum won't work when using tailwind
+export enum TailwindColors {
+  updated = 'bg-orange-100',
+  deleted = 'bg-red-100',
+  static = 'bg-white',
+  created = 'bg-green-100',
+}

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Task } from '../../models/task.model';
+import { TailwindColors, Task } from '../../models/task.model';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -13,6 +13,7 @@ export class TaskComponent {
   @Output() delete = new EventEmitter();
   @Output() update = new EventEmitter<Task>();
   @Output() toggleStatus = new EventEmitter<Task>();
+  colorsEnum = TailwindColors;
   onDeleteTask() {
     if (confirm(`are you sure you want to delete task: '${this.task.name}'?`))
       this.delete.emit(this.task.id);
