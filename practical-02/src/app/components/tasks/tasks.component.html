@@ -1,0 +1,23 @@
+<h1 class="text-2xl font-bold mb-4 text-center">Tasks</h1>
+<ul class="flex flex-col gap-4 h-[400px] overflow-y-auto snap-y snap-normal">
+  @if(tasks.length!==0) { @for (task of tasks; track $index) {
+  <app-task
+    class="snap-start"
+    (toggleStatus)="updateTask($event)"
+    (delete)="deleteTask($event)"
+    (update)="handleUpdateTask($event)"
+    [task]="task"
+  />
+  } } @else{
+  <app-error> No tasks found. Create a new one. </app-error>
+  }
+</ul>
+@if(isAddingOrUpdating){<app-task-form
+  [updateTask]="taskToUpdate"
+  (formSubmit)="handleFormSubmit($event)"
+/>}
+<div class="flex justify-end mt-4">
+  <app-button (click)="toggleIsAddingOrUpdating()">
+    {{ isAddingOrUpdating ? "Close" : "Add" }}
+  </app-button>
+</div>
