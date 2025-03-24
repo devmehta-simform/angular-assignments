@@ -45,6 +45,7 @@ export class TaskFormComponent implements OnInit {
       isCompleted: false,
       id: crypto.randomUUID(),
       createdAt: this.now,
+      status: 'created',
     };
     if (this.updateTask) this.isUpdating = true;
   }

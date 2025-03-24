@@ -20,6 +20,7 @@ export class TasksComponent {
     this.tasks = this.taskService.getTasks();
   }
   toggleIsAddingOrUpdating() {
+    this.taskToUpdate = undefined;
     this.isAddingOrUpdating = !this.isAddingOrUpdating;
   }
   createTask(task: Task) {

@@ -12,6 +12,7 @@ export class TaskService {
       createdAt: new Date('2025-03-18T08:30:00'),
       body: 'Buy milk, bread, and coffee from the store.',
       isCompleted: false,
+      status: 'static',
     },
     {
       id: crypto.randomUUID(),
@@ -19,6 +20,7 @@ export class TaskService {
       createdAt: new Date('2025-03-19T10:00:00'),
       body: 'Finish the math and science assignments due tomorrow.',
       isCompleted: true,
+      status: 'static',
     },
     {
       id: crypto.randomUUID(),
@@ -26,6 +28,7 @@ export class TaskService {
       createdAt: new Date('2025-03-20T12:00:00'),
       body: 'Call my parents to check on them and talk about the weekend plans.',
       isCompleted: false,
+      status: 'static',
     },
     {
       id: crypto.randomUUID(),
@@ -33,6 +36,7 @@ export class TaskService {
       createdAt: new Date('2025-03-21T14:00:00'),
       body: 'Vacuum the living room, dust the shelves, and clean the kitchen.',
       isCompleted: true,
+      status: 'static',
     },
     {
       id: crypto.randomUUID(),
@@ -40,6 +44,7 @@ export class TaskService {
       createdAt: new Date('2025-03-22T16:00:00'),
       body: 'Take the dog for a walk in the park.',
       isCompleted: false,
+      status: 'static',
     },
   ];
   constructor() {}
@@ -51,18 +56,29 @@ export class TaskService {
     return this.tasks.find((task) => task.id === id);
   }
   createTask(task: Pick<Task, 'name' | 'body' | 'createdAt'>) {
-    this.tasks.push({ ...task, id: crypto.randomUUID(), isCompleted: false });
+    this.tasks.push({
+      ...task,
+      id: crypto.randomUUID(),
+      isCompleted: false,
+      status: 'created',
+    });
     return [...this.tasks];
   }
   deleteTaskById(id: string) {
     const targetTaskIndex = this.tasks.findIndex((task) => task.id === id);
-    if (targetTaskIndex !== -1) this.tasks.splice(targetTaskIndex, 1);
+    // if (targetTaskIndex !== -1) this.tasks.splice(targetTaskIndex, 1);
+    if (targetTaskIndex !== -1) this.tasks[targetTaskIndex].status = 'deleted';
     return [...this.tasks];
   }
   updateTaskById(id: string, task: Partial<Task>) {
     const targetTaskIndex = this.tasks.findIndex((task) => task.id === id);
     if (targetTaskIndex !== -1)
-      this.tasks[targetTaskIndex] = { ...this.tasks[targetTaskIndex], ...task };
+      this.tasks[targetTaskIndex] = {
+        ...this.tasks[targetTaskIndex],
+        ...task,
+        status: 'updated',
+      };
+
     return [...this.tasks];
   }
 }
