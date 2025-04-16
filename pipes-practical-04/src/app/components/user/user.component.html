@@ -15,7 +15,7 @@
       <span class="font-bold">Company:</span> {{ user.company.name }}
     </p>
     <p class="text-md">
-      <span class="font-bold">Phone:</span> {{ user.phone }}
+      <span class="font-bold">Phone:</span> {{ user.phone | maskPhone }}
     </p>
     <div class="card-actions">
       <button class="btn btn-neutral">View Details</button>

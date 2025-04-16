@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { User } from '../../types/user';
+import { MaskPhonePipe } from '../../pipes/mask-phone.pipe';
 
 @Component({
   selector: 'app-user',
-  imports: [],
+  imports: [MaskPhonePipe],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css',
 })
