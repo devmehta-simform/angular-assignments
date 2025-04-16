@@ -1,1 +1,24 @@
-<p>user works!</p>
+<div class="card bg-base-100 w-96 shadow-sm">
+  <figure class="px-10 pt-10">
+    <img
+      src="https://ui-avatars.com/api/?name={{ user.name }}&background=random"
+      alt="{{ user.name }}"
+      class="rounded-xl"
+    />
+  </figure>
+  <div class="card-body items-center text-center">
+    <h2 class="card-title text-xl">{{ user.name }}</h2>
+    <p class="text-md">
+      <span class="font-bold">Email:</span> {{ user.email }}
+    </p>
+    <p class="text-md">
+      <span class="font-bold">Company:</span> {{ user.company.name }}
+    </p>
+    <p class="text-md">
+      <span class="font-bold">Phone:</span> {{ user.phone }}
+    </p>
+    <div class="card-actions">
+      <button class="btn btn-neutral">View Details</button>
+    </div>
+  </div>
+</div>

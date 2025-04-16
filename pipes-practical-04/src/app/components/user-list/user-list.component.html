@@ -1,1 +1,10 @@
-<p>user-list works!</p>
+<div
+  *ngIf="users$ | async as users"
+  class="grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] justify-items-center"
+>
+  @for (user of users; track $index) {
+  <div class="p-4">
+    <app-user [user]="user"></app-user>
+  </div>
+  }
+</div>
