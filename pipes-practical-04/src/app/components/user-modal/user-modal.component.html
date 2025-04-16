@@ -1,6 +1,29 @@
-@if(user){
+<!--
+  You'll also get this error if your target element is inside a hidden element. If this is your HTML:
+
+    <div *ngIf="false">
+        <span #sp>Hello World</span>
+    </div>
+  Your @ViewChild('sp') sp will be undefined.
+
+  Solution
+    In such a case, then don't use *ngIf.
+
+    Instead use a class to show/hide your element being hidden.
+
+    <div [class.show]="shouldShow">...</div>
+
+  refer: https://stackoverflow.com/questions/39158922/viewchild-not-working-cannot-read-property-nativeelement-of-undefined
+-->
+
 <dialog id="user-modal" class="modal" #userModalDialogRef>
+  @if(user){
   <div class="modal-box">
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+        ✕
+      </button>
+    </form>
     <h3 class="text-lg font-bold mb-2">User Details</h3>
     <div class="space-y-2">
       <p>
@@ -67,5 +90,5 @@
   <form method="dialog" class="modal-backdrop">
     <button>Close</button>
   </form>
+  }
 </dialog>
-}

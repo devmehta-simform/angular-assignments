@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { UserModalService } from '../../services/user-modal.service';
 import { Observable } from 'rxjs';
 import { User } from '../../types/user';
@@ -9,13 +9,15 @@ import { User } from '../../types/user';
   templateUrl: './user-modal.component.html',
   styleUrl: './user-modal.component.css',
 })
-export class UserModalComponent {
+export class UserModalComponent implements AfterViewInit {
   @ViewChild('userModalDialogRef')
   userModalDialogRef!: ElementRef<HTMLDialogElement>;
   userModal$!: Observable<User | null>;
   user: User | null = null;
 
-  constructor(private userModalService: UserModalService) {
+  constructor(private userModalService: UserModalService) {}
+
+  ngAfterViewInit() {
     this.userModal$ = this.userModalService.getUserModal$();
     this.userModal$.subscribe((user) => {
       this.user = user;
