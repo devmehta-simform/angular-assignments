@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { User } from '../../types/user';
 import { MaskPhonePipe } from '../../pipes/mask-phone.pipe';
+import { UserModalService } from '../../services/user-modal.service';
 
 @Component({
   selector: 'app-user',
@@ -10,4 +11,10 @@ import { MaskPhonePipe } from '../../pipes/mask-phone.pipe';
 })
 export class UserComponent {
   @Input({ required: true }) user!: User;
+
+  constructor(private userModalService: UserModalService) {}
+
+  handleModal() {
+    this.userModalService.showModal(this.user);
+  }
 }

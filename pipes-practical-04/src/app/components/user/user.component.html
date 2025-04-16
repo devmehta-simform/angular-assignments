@@ -18,7 +18,9 @@
       <span class="font-bold">Phone:</span> {{ user.phone | maskPhone }}
     </p>
     <div class="card-actions">
-      <button class="btn btn-neutral">View Details</button>
+      <button (click)="handleModal()" class="btn btn-neutral">
+        View Details
+      </button>
     </div>
   </div>
 </div>

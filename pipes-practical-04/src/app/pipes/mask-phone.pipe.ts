@@ -10,7 +10,6 @@ export class MaskPhonePipe implements PipeTransform {
       const newPhone = parts.filter((part, i) => {
         return !Number.isNaN(parseInt(part));
       });
-      console.log(value);
       return (
         newPhone[0] +
         new Array(newPhone.length - 3).fill('*').join('') +

@@ -17,7 +17,6 @@ export class UserService {
   getAllUsers(): Observable<User[]> {
     return this.httpClient.get(environment.API_BASE_URL + this.baseUrl).pipe(
       map((res) => {
-        console.log(res);
         const user = z.array(UserSchema).parse(res);
         return user;
       })

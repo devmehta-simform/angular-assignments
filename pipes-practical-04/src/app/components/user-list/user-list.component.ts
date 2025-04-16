@@ -4,10 +4,11 @@ import { User } from '../../types/user';
 import { UserService } from '../../services/user.service';
 import { Observable } from 'rxjs';
 import { AsyncPipe, CommonModule } from '@angular/common';
+import { UserModalComponent } from '../user-modal/user-modal.component';
 
 @Component({
   selector: 'app-user-list',
-  imports: [UserComponent, AsyncPipe, CommonModule],
+  imports: [UserComponent, AsyncPipe, CommonModule, UserModalComponent],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css',
 })

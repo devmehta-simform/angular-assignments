@@ -1,0 +1,71 @@
+@if(user){
+<dialog id="user-modal" class="modal" #userModalDialogRef>
+  <div class="modal-box">
+    <h3 class="text-lg font-bold mb-2">User Details</h3>
+    <div class="space-y-2">
+      <p>
+        <strong>ID:</strong> <span id="user-id">{{ user.id }}</span>
+      </p>
+      <p>
+        <strong>Name:</strong> <span id="user-name">{{ user.name }}</span>
+      </p>
+      <p>
+        <strong>Username:</strong>
+        <span id="user-username">{{ user.username }}</span>
+      </p>
+      <p>
+        <strong>Email:</strong> <span id="user-email">{{ user.email }}</span>
+      </p>
+      <p>
+        <strong>Phone:</strong> <span id="user-phone">{{ user.phone }}</span>
+      </p>
+      <p>
+        <strong>Website:</strong>
+        <span id="user-website">{{ user.website }}</span>
+      </p>
+    </div>
+    <div class="mt-4">
+      <h4 class="font-bold">Address</h4>
+      <p>
+        <strong>Street:</strong>
+        <span id="user-street">{{ user.address.street }}</span>
+      </p>
+      <p>
+        <strong>Suite:</strong>
+        <span id="user-suite">{{ user.address.suite }}</span>
+      </p>
+      <p>
+        <strong>City:</strong>
+        <span id="user-city">{{ user.address.city }}</span>
+      </p>
+      <p>
+        <strong>Zipcode:</strong>
+        <span id="user-zipcode">{{ user.address.zipcode }}</span>
+      </p>
+      <p>
+        <strong>Geo:</strong>
+        <span id="user-lat">{{ user.address.geo.lat }}</span
+        >,
+        <span id="user-lng">{{ user.address.geo.lng }}</span>
+      </p>
+    </div>
+    <div class="mt-4">
+      <h4 class="font-bold">Company</h4>
+      <p>
+        <strong>Name:</strong>
+        <span id="company-name">{{ user.company.name }}</span>
+      </p>
+      <p>
+        <strong>Catch Phrase:</strong>
+        <span id="company-catch">{{ user.company.catchPhrase }}</span>
+      </p>
+      <p>
+        <strong>BS:</strong> <span id="company-bs">{{ user.company.bs }}</span>
+      </p>
+    </div>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>Close</button>
+  </form>
+</dialog>
+}
