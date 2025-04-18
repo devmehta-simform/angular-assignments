@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { AccordionComponent } from './components/accordion/accordion.component';
+import { DepartmentListComponent } from './components/department-list/department-list.component';
 
 @Component({
   selector: 'app-root',
-  imports: [AccordionComponent],
+  imports: [DepartmentListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
