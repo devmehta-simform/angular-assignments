@@ -1,3 +1,4 @@
 @for (department of departments; track $index) {
 <app-department [department]="department"></app-department>
 }
+<app-modal (create)="create($event)"></app-modal>
