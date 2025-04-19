@@ -65,13 +65,13 @@ export class ModalComponent implements AfterViewInit {
       const name = this.myForm.controls.name.value;
       if (this.modalType === 'department') {
         if (name !== null) {
-          this.create.emit({ type: 'department', data: name });
+          this.create.emit({ type: 'department', data: { name } });
           this.closeModal();
         }
       } else if (this.modalType === 'user') {
         const deptName = this.myForm.controls.deptName.value;
         if (name && deptName) {
-          this.create.emit({ type: 'department', data: { name, deptName } });
+          this.create.emit({ type: 'user', data: { name, deptName } });
           this.closeModal();
         }
       }

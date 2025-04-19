@@ -26,6 +26,7 @@ export class DepartmentListComponent implements OnInit {
   }
 
   create(obj: CreateDto) {
+    console.log(obj);
     switch (obj.type) {
       case 'department':
         if (this.isDepartment(obj.data)) {
