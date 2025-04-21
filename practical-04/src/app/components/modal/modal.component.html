@@ -1,0 +1,36 @@
+<dialog class="modal" #modalRef>
+  <div class="modal-box">
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+        ✕
+      </button>
+    </form>
+    <div class="flex flex-col gap-5" [formGroup]="myForm">
+      <h3 class="text-lg font-bold capitalize">{{ modalType }}</h3>
+      <label for="name">{{ modalType }} name: </label>
+      <input
+        formControlName="name"
+        id="name"
+        type="text"
+        placeholder="{{ modalType }} name"
+        class="input"
+      />
+      @if(modalType==='user'){
+      <label for="deptName">department: </label>
+      <select id="deptName" formControlName="deptName" class="select">
+        <option disabled selected>Pick a Department</option>
+        @for (department of departments; track $index) {
+        <option value="{{ department }}">{{ department }}</option>
+        }
+      </select>
+      }
+      <button
+        [disabled]="!myForm.valid"
+        class="capitalize btn btn-neutral"
+        (click)="handleSubmit()"
+      >
+        Create {{ modalType }}
+      </button>
+    </div>
+  </div>
+</dialog>
