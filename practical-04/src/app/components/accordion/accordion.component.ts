@@ -7,7 +7,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
   styleUrl: './accordion.component.css',
 })
 export class AccordionComponent {
-  isOpen: boolean = false;
+  @Input({ required: true }) isOpen: boolean = false;
   @Input({ required: true }) title!: string;
   @Input({ required: true }) items!: string[];
 

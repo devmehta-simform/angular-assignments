@@ -17,7 +17,7 @@ import { ModalType } from '../../types/modal';
 })
 export class DepartmentListComponent implements OnInit {
   departments: Department[] = [];
-
+  filterValue: string = '';
   constructor(
     private departmentService: DepartmentService,
     private userService: UserService,
@@ -29,7 +29,7 @@ export class DepartmentListComponent implements OnInit {
   }
 
   create(obj: CreateDto) {
-    console.log(obj);
+    // console.log(obj);
     switch (obj.type) {
       case 'department':
         if (this.isDepartment(obj.data)) {
@@ -68,5 +68,11 @@ export class DepartmentListComponent implements OnInit {
 
   openModal(modalType: ModalType) {
     this.modalService.showModal(modalType);
+  }
+
+  handleFilter(event: Event) {
+    if (event.target instanceof HTMLSelectElement) {
+      this.filterValue = event.target.value;
+    }
   }
 }

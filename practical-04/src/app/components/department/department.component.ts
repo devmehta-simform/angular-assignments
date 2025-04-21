@@ -17,6 +17,7 @@ import { UserService } from '../../services/user.service';
 })
 export class DepartmentComponent implements OnInit, OnChanges {
   @Input({ required: true }) department!: Department;
+  @Input({ required: true }) isFiltered!: boolean;
   userNamesInDepartment: string[] = [];
 
   constructor(private userService: UserService) {}
@@ -28,7 +29,7 @@ export class DepartmentComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const newDepartment = changes['department'].currentValue;
+    const newDepartment = changes['department']?.currentValue;
     if (this.isDepartment(newDepartment)) {
       this.department = newDepartment;
       this.userNamesInDepartment = this.userService
