@@ -16,10 +16,6 @@ export class UserService {
   }
 
   getAllUsersInDept(deptName: string) {
-    return [
-      ...this.users.filter((user) => {
-        user.deptName === deptName;
-      }),
-    ];
+    return [...this.users.filter((user) => user.deptName === deptName)];
   }
 }
