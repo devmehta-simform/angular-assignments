@@ -6,6 +6,8 @@ import { ModalComponent } from '../modal/modal.component';
 import { CreateDto } from '../../types/createDto';
 import { UserService } from '../../services/user.service';
 import { User } from '../../types/user';
+import { ModalService } from '../../services/modal.service';
+import { ModalType } from '../../types/modal';
 
 @Component({
   selector: 'app-department-list',
@@ -18,7 +20,8 @@ export class DepartmentListComponent implements OnInit {
 
   constructor(
     private departmentService: DepartmentService,
-    private userService: UserService
+    private userService: UserService,
+    private modalService: ModalService
   ) {}
 
   ngOnInit() {
@@ -61,5 +64,9 @@ export class DepartmentListComponent implements OnInit {
       'deptName' in user &&
       typeof user.deptName === 'string'
     );
+  }
+
+  openModal(modalType: ModalType) {
+    this.modalService.showModal(modalType);
   }
 }
