@@ -1,9 +1,15 @@
 <div class="p-6">
   <h2 class="text-2xl font-bold mb-4">User Management</h2>
 
-  <button class="btn btn-primary mb-4" (click)="showUserFormModal()">
+  <button class="btn btn-primary mb-4" onclick="userFormModal.showModal()">
     Add User
   </button>
+  <dialog id="userFormModal" class="modal open">
+    <app-user-form-modal></app-user-form-modal>
+    <form method="dialog" class="modal-backdrop">
+      <button>close</button>
+    </form>
+  </dialog>
 
   <div class="overflow-x-auto">
     <table class="table table-zebra w-full">
@@ -25,7 +31,6 @@
           <td>{{ user.salary }}</td>
           <td>{{ user.createdAt }}</td>
         </tr>
-
         }
       </tbody>
     </table>

@@ -1,1 +1,49 @@
-<p>user-form-modal works!</p>
+<div>
+  <div class="modal-box w-full max-w-lg shadow-xl rounded-xl">
+    <h3 class="font-bold text-xl mb-6">Add New User</h3>
+    <form class="space-y-4">
+      <div class="form-control">
+        <label class="label">Name</label>
+        <input type="text" class="input input-bordered w-full" />
+      </div>
+
+      <div class="form-control">
+        <label class="label">Department</label>
+        <input type="text" class="input input-bordered w-full" />
+      </div>
+
+      <div class="form-control">
+        <label class="label">Email</label>
+        <input type="email" class="input input-bordered validator w-full" />
+        <div class="validator-hint text-sm mt-1 text-error">
+          Invalid email format
+        </div>
+      </div>
+
+      <div class="form-control">
+        <label class="label">Password</label>
+        <input type="password" class="input input-bordered validator w-full" />
+        <div class="validator-hint text-sm mt-1 text-error">
+          Password must be 8–16 chars, include 1 number and 1 special char
+        </div>
+      </div>
+
+      <div class="form-control">
+        <label class="label">Designation</label>
+        <input type="text" class="input input-bordered w-full" />
+      </div>
+
+      <div class="form-control mb-2">
+        <label class="label">Salary</label>
+        <input type="number" class="input input-bordered w-full" />
+      </div>
+
+      <div class="modal-action justify-end gap-3 pt-4">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <form method="dialog">
+          <button class="btn">Close</button>
+        </form>
+      </div>
+    </form>
+  </div>
+</div>

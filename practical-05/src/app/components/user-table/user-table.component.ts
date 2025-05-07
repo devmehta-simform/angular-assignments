@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { User } from '../../types/user';
+import { UserFormModalComponent } from '../user-form-modal/user-form-modal.component';
 
 @Component({
   selector: 'app-user-table',
-  imports: [],
+  imports: [UserFormModalComponent],
   templateUrl: './user-table.component.html',
   styleUrl: './user-table.component.css',
 })
