@@ -10,7 +10,6 @@
       <button>close</button>
     </form>
   </dialog>
-
   <div class="overflow-x-auto">
     <table class="table table-zebra w-full">
       <thead>
@@ -23,7 +22,8 @@
         </tr>
       </thead>
       <tbody>
-        @for (user of users; track user.email) {
+        @for (user of users.slice((pageNumber - 1) * pageOffset, pageNumber *
+        pageOffset); track user.email) {
         <tr>
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
@@ -34,5 +34,33 @@
         }
       </tbody>
     </table>
+  </div>
+  <div class="join flex flex-row justify-center mt-5">
+    <button
+      class="join-item btn"
+      (click)="pageNumber = pageNumber - 1"
+      [disabled]="pageNumber === 1"
+    >
+      «
+    </button>
+    <button class="join-item btn">Page {{ pageNumber }}</button>
+    <button
+      class="join-item btn"
+      (click)="pageNumber = pageNumber + 1"
+      [disabled]="pageNumber * pageOffset >= users.length"
+    >
+      »
+    </button>
+
+    <select
+      class="select select-bordered select-sm ml-4"
+      [(ngModel)]="pageOffset"
+      name="pageOffset"
+      (change)="pageNumber = 1"
+    >
+      <option [ngValue]="3">3</option>
+      <option [ngValue]="5">5</option>
+      <option [ngValue]="10">10</option>
+    </select>
   </div>
 </div>
