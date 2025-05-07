@@ -1,20 +1,37 @@
 <div>
   <div class="modal-box w-full max-w-lg shadow-xl rounded-xl">
     <h3 class="font-bold text-xl mb-6">Add New User</h3>
-    <form class="space-y-4">
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+        ✕
+      </button>
+    </form>
+    <form class="space-y-4" [formGroup]="userForm">
       <div class="form-control">
         <label class="label">Name</label>
-        <input type="text" class="input input-bordered w-full" />
+        <input
+          type="text"
+          class="input input-bordered w-full"
+          [formControl]="userForm.controls.name"
+        />
       </div>
 
       <div class="form-control">
         <label class="label">Department</label>
-        <input type="text" class="input input-bordered w-full" />
+        <input
+          type="text"
+          class="input input-bordered w-full"
+          [formControl]="userForm.controls.department"
+        />
       </div>
 
       <div class="form-control">
         <label class="label">Email</label>
-        <input type="email" class="input input-bordered validator w-full" />
+        <input
+          type="email"
+          class="input input-bordered validator w-full"
+          [formControl]="userForm.controls.email"
+        />
         <div class="validator-hint text-sm mt-1 text-error">
           Invalid email format
         </div>
@@ -22,7 +39,11 @@
 
       <div class="form-control">
         <label class="label">Password</label>
-        <input type="password" class="input input-bordered validator w-full" />
+        <input
+          type="password"
+          class="input input-bordered validator w-full"
+          [formControl]="userForm.controls.password"
+        />
         <div class="validator-hint text-sm mt-1 text-error">
           Password must be 8–16 chars, include 1 number and 1 special char
         </div>
@@ -30,18 +51,32 @@
 
       <div class="form-control">
         <label class="label">Designation</label>
-        <input type="text" class="input input-bordered w-full" />
+        <input
+          type="text"
+          class="input input-bordered w-full"
+          [formControl]="userForm.controls.designation"
+        />
       </div>
 
       <div class="form-control mb-2">
         <label class="label">Salary</label>
-        <input type="number" class="input input-bordered w-full" />
+        <input
+          type="number"
+          class="input input-bordered w-full"
+          [formControl]="userForm.controls.salary"
+        />
       </div>
 
       <div class="modal-action justify-end gap-3 pt-4">
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="handleUserCreate()"
+        >
+          Save
+        </button>
         <form method="dialog">
-          <button class="btn">Close</button>
+          <button class="btn" #closeBtn>Close</button>
         </form>
       </div>
     </form>
