@@ -1,1 +1,33 @@
-<p>user-table works!</p>
+<div class="p-6">
+  <h2 class="text-2xl font-bold mb-4">User Management</h2>
+
+  <button class="btn btn-primary mb-4" (click)="showUserFormModal()">
+    Add User
+  </button>
+
+  <div class="overflow-x-auto">
+    <table class="table table-zebra w-full">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Department</th>
+          <th>Salary</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (user of users; track user.email) {
+        <tr>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.department }}</td>
+          <td>{{ user.salary }}</td>
+          <td>{{ user.createdAt }}</td>
+        </tr>
+
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
