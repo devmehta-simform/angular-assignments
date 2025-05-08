@@ -25,9 +25,16 @@
       <tbody>
         @for (user of users.slice((pageNumber - 1) * pageOffset, pageNumber *
         pageOffset); track user.email) {
-        <tr (click)="setSelectedUser(user)">
+        <tr
+          (click)="setSelectedUser(user)"
+          class="hover:bg-gray-100 cursor-pointer"
+        >
           <td>{{ user.name }}</td>
-          <td>{{ user.email | lowercase }}</td>
+          <td
+            [innerHTML]="user.email | lowercase | emailLink"
+            (click)="handleEmailClick($event)"
+            class="text-indigo-600"
+          ></td>
           <td>{{ user.department | uppercase }}</td>
           <td>{{ user.salary | currency : "INR" }}</td>
           <td>{{ user.createdAt | date : "fullDate" }}</td>

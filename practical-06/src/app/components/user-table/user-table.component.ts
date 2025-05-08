@@ -9,6 +9,7 @@ import {
   UpperCasePipe,
 } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { EmailLinkPipe } from '../../pipes/email-link.pipe';
 
 @Component({
   selector: 'app-user-table',
@@ -19,6 +20,7 @@ import { FormsModule } from '@angular/forms';
     CurrencyPipe,
     UpperCasePipe,
     LowerCasePipe,
+    EmailLinkPipe,
   ],
   templateUrl: './user-table.component.html',
   styleUrl: './user-table.component.css',
@@ -62,5 +64,9 @@ export class UserTableComponent {
     this.users = this.userService.deleteUser(userEmail);
     this.selectedUser = undefined;
     this.pageNumber = 1;
+  }
+
+  handleEmailClick(e: Event) {
+    e.stopImmediatePropagation();
   }
 }
