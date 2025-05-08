@@ -27,9 +27,9 @@
         pageOffset); track user.email) {
         <tr (click)="setSelectedUser(user)">
           <td>{{ user.name }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.department }}</td>
-          <td>{{ user.salary }}</td>
+          <td>{{ user.email | lowercase }}</td>
+          <td>{{ user.department | uppercase }}</td>
+          <td>{{ user.salary | currency : "INR" }}</td>
           <td>{{ user.createdAt | date : "fullDate" }}</td>
         </tr>
         }

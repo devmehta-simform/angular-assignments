@@ -2,12 +2,24 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { User } from '../../types/user';
 import { UserFormModalComponent } from '../user-form-modal/user-form-modal.component';
 import { UserService } from '../../services/user.service';
-import { DatePipe } from '@angular/common';
+import {
+  CurrencyPipe,
+  DatePipe,
+  LowerCasePipe,
+  UpperCasePipe,
+} from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user-table',
-  imports: [UserFormModalComponent, DatePipe, FormsModule],
+  imports: [
+    UserFormModalComponent,
+    DatePipe,
+    FormsModule,
+    CurrencyPipe,
+    UpperCasePipe,
+    LowerCasePipe,
+  ],
   templateUrl: './user-table.component.html',
   styleUrl: './user-table.component.css',
 })
