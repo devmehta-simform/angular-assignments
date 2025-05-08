@@ -1,0 +1,66 @@
+<div class="p-6">
+  <h2 class="text-2xl font-bold mb-4">User Management</h2>
+  <button class="btn btn-primary mb-4" (click)="showUserFormModal()">
+    Add User
+  </button>
+  <dialog id="userFormModal" class="modal open" #userFormModal>
+    <app-user-form-modal
+      [userData]="selectedUser"
+      (create)="createUser($event)"
+      (update)="updateUser($event)"
+      (delete)="deleteUser($event)"
+    ></app-user-form-modal>
+  </dialog>
+  <div class="overflow-x-auto">
+    <table class="table table-zebra w-full">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Department</th>
+          <th>Salary</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (user of users.slice((pageNumber - 1) * pageOffset, pageNumber *
+        pageOffset); track user.email) {
+        <tr (click)="setSelectedUser(user)">
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.department }}</td>
+          <td>{{ user.salary }}</td>
+          <td>{{ user.createdAt | date : "fullDate" }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  <div class="join flex flex-row justify-center mt-5 items-center">
+    <button
+      class="join-item btn"
+      (click)="pageNumber = pageNumber - 1"
+      [disabled]="pageNumber === 1"
+    >
+      «
+    </button>
+    <button class="join-item btn">Page {{ pageNumber }}</button>
+    <button
+      class="join-item btn"
+      (click)="pageNumber = pageNumber + 1"
+      [disabled]="pageNumber * pageOffset >= users.length"
+    >
+      »
+    </button>
+    <select
+      class="select select-bordered select-sm ml-4 w-20"
+      [(ngModel)]="pageOffset"
+      name="pageOffset"
+      (change)="pageNumber = 1"
+    >
+      <option [ngValue]="3">3</option>
+      <option [ngValue]="5">5</option>
+      <option [ngValue]="10">10</option>
+    </select>
+  </div>
+</div>
