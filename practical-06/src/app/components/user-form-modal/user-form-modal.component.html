@@ -1,0 +1,109 @@
+<div class="modal-box w-full max-w-lg shadow-xl rounded-xl">
+  <h3 class="font-bold text-xl mb-6">
+    {{ userData === undefined ? "Add New" : "Update" }} User
+  </h3>
+  <form method="dialog">
+    <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+      ✕
+    </button>
+  </form>
+  <form class="space-y-4" [formGroup]="userForm">
+    <div class="form-control">
+      <label class="label">Name</label>
+      <input
+        type="text"
+        class="input input-bordered w-full"
+        [formControl]="userForm.controls.name"
+      />
+      @if(userForm.controls.name.touched && userForm.controls.name.invalid){
+      <p class="text-error">name *required</p>
+      }
+    </div>
+
+    <div class="form-control">
+      <label class="label">Department</label>
+      <input
+        type="text"
+        class="input input-bordered w-full"
+        [formControl]="userForm.controls.department"
+      />@if(userForm.controls.department.touched &&
+      userForm.controls.department.invalid){
+      <p class="text-error">department *required</p>
+      }
+    </div>
+
+    <div class="form-control">
+      <label class="label">Email</label>
+      <input
+        type="email"
+        class="input input-bordered validator w-full"
+        [formControl]="userForm.controls.email"
+        [readonly]="userData !== undefined"
+      />
+      @if(userForm.controls.email.touched && userForm.controls.email.invalid){
+      <p class="text-error">invalid email *required</p>
+      }
+    </div>
+
+    <div class="form-control">
+      <label class="label">Password</label>
+      <input
+        type="password"
+        class="input input-bordered validator w-full"
+        [formControl]="userForm.controls.password"
+      />
+      @if(userForm.controls.password.touched &&
+      userForm.controls.password.invalid){
+      <p class="text-error">
+        Password must be 8–16 chars, include 1 number and 1 special char
+        *required
+      </p>
+      }
+    </div>
+
+    <div class="form-control">
+      <label class="label">Designation</label>
+      <input
+        type="text"
+        class="input input-bordered w-full"
+        [formControl]="userForm.controls.designation"
+      />
+      @if(userForm.controls.designation.touched &&
+      userForm.controls.designation.invalid){
+      <p class="text-error">designation *required</p>
+      }
+    </div>
+
+    <div class="form-control mb-2">
+      <label class="label">Salary</label>
+      <input
+        type="number"
+        class="input input-bordered w-full"
+        [formControl]="userForm.controls.salary"
+      />
+      @if(userForm.controls.salary.touched && userForm.controls.salary.invalid){
+      <p class="text-error">salary *required</p>
+      }
+    </div>
+
+    <div class="modal-action justify-end gap-3 pt-4">
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="handleUserCreateOrUpdate()"
+      >
+        Save
+      </button>
+      @if(userData){<button
+        type="button"
+        class="btn btn-error"
+        (click)="handleUserDelete()"
+      >
+        Delete</button
+      >}
+      <form method="dialog">
+        <button class="btn" #closeBtn>Close</button>
+      </form>
+    </div>
+  </form>
+</div>
