@@ -1,7 +1,7 @@
 <div class="container mx-auto p-4 sm:p-6 lg:p-8">
   <div class="flex justify-between items-center mb-6">
     <h1 class="text-3xl font-bold text-primary">Social Feed</h1>
-    <a routerLink="add-edit">
+    <a routerLink="/post-form">
       <button class="btn btn-primary">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -23,8 +23,8 @@
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    @for (post of posts; track $index) {
+    @if(posts$ | async; as posts) { @for (post of posts; track $index) {
     <app-post-list-item [post]="post"></app-post-list-item>
-    }
+    } }
   </div>
 </div>

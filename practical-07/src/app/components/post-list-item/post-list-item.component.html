@@ -1,18 +1,21 @@
 <div
-  class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-pointer transform hover:-translate-y-1"
+  class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-pointer transform hover:-translate-y-1 h-full"
 >
   <div class="card-body">
-    <a routerLink="post-details/{{ post.id }}">
+    <a routerLink="/post-details/{{ post.id }}">
       <h2
         class="card-title text-xl font-semibold text-secondary-focus hover:text-primary transition-colors"
       >
         {{ post.title }}
       </h2>
     </a>
-    <p class="text-base-content text-opacity-80 mt-2 line-clamp-3">
+    <p class="text-base-content text-opacity-80 mt-2 overflow-ellipsis">
       {{ post.body }}
     </p>
     <div class="card-actions justify-end mt-4">
+      <p class="text-xs text-base-content text-opacity-60 mt-3">
+        Posted by {{ post.userId }}
+      </p>
       <button class="btn btn-error btn-sm btn-outline">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -31,8 +34,5 @@
         Delete
       </button>
     </div>
-    <p class="text-xs text-base-content text-opacity-60 mt-3">
-      Posted by {{ post.userId }}
-    </p>
   </div>
 </div>

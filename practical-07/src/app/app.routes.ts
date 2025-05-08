@@ -6,8 +6,10 @@ import { PostFormComponent } from './components/post-form/post-form.component';
 export const routes: Routes = [
   {
     path: '',
-    component: PostListComponent,
+    pathMatch: 'full',
+    redirectTo: 'posts',
   },
+  { path: 'posts', component: PostListComponent },
   {
     path: 'post-form',
     component: PostFormComponent,

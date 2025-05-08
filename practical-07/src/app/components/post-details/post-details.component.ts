@@ -1,20 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { PostService } from '../../services/post.service';
+import { Post } from '../../types/post';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-post-details',
-  imports: [],
+  imports: [RouterLink, AsyncPipe],
   templateUrl: './post-details.component.html',
   styleUrl: './post-details.component.css',
 })
 export class PostDetailsComponent implements OnInit {
-  postId!: string;
-
-  constructor(private route: ActivatedRoute) {}
+  post$!: Observable<Post>;
+  constructor(
+    private route: ActivatedRoute,
+    private postService: PostService
+  ) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
-      this.postId = params.get('id')!;
+      const id = params.get('id');
+      if (id) {
+        this.post$ = this.postService.getPostById(id);
+      }
     });
   }
 }
