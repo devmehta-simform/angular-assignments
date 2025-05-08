@@ -61,6 +61,18 @@ export class UserService {
   }
 
   getAllUsers() {
-    return this.users;
+    return [...this.users];
+  }
+
+  updateUser(email: string, data: Partial<User>) {
+    const ind = this.users.findIndex((e) => e.email === email);
+    this.users[ind] = { ...this.users[ind], ...data };
+    return this.getAllUsers();
+  }
+
+  deleteUser(email: string) {
+    const ind = this.users.findIndex((e) => e.email === email);
+    this.users.splice(ind, 1);
+    return this.getAllUsers();
   }
 }
