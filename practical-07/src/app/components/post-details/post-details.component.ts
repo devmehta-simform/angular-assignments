@@ -4,7 +4,8 @@ import { PostService } from '../../services/post.service';
 import { Post } from '../../types/post';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
-
+import { CommentService } from '../../services/comment.service';
+import { Comment } from '../../types/comment';
 @Component({
   selector: 'app-post-details',
   imports: [RouterLink, AsyncPipe],
@@ -13,9 +14,12 @@ import { AsyncPipe } from '@angular/common';
 })
 export class PostDetailsComponent implements OnInit {
   post$!: Observable<Post>;
+  comments$!: Observable<Comment[]>;
+
   constructor(
     private route: ActivatedRoute,
-    private postService: PostService
+    private postService: PostService,
+    private commentService: CommentService
   ) {}
 
   ngOnInit() {
@@ -23,6 +27,7 @@ export class PostDetailsComponent implements OnInit {
       const id = params.get('id');
       if (id) {
         this.post$ = this.postService.getPostById(id);
+        this.comments$ = this.commentService.getAllCommentsForPost(id);
       }
     });
   }

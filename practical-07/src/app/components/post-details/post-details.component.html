@@ -61,9 +61,10 @@
     </div>
 
     <div class="divider my-6">Comments</div>
+    @if(comments$ | async; as comments){
     <div class="mt-6">
       <h3 class="text-2xl font-semibold text-neutral-focus mb-4">
-        Comments (2)
+        Comments ({{ comments.length }})
       </h3>
       <div class="bg-base-200 p-4 rounded-lg mb-6">
         <h4 class="text-md font-semibold text-neutral-focus mb-3">
@@ -78,46 +79,24 @@
       </div>
 
       <div class="space-y-4">
+        @for(comment of comments; track $index){
         <div class="chat chat-start">
-          <div class="chat-image avatar">
-            <div
-              class="w-10 rounded-full bg-neutral-focus text-neutral-content flex items-center justify-center"
-            >
-              <span>U2</span>
-            </div>
-          </div>
-          <div class="chat-header text-xs opacity-50">
-            User 2
-            <time class="ml-1">10:35 AM</time>
+          <div class="chat-header">
+            <span class="ml-1 text-xs opacity-50">{{ comment.email }}</span>
           </div>
           <div class="chat-bubble chat-bubble-info">
-            This is a great static comment!
+            {{ comment.body }}
           </div>
+
           <div class="chat-footer opacity-50">
+            <button class="btn btn-xs btn-ghost textarea-primary">Edit</button>
             <button class="btn btn-xs btn-ghost text-error">Delete</button>
           </div>
         </div>
-        <div class="chat chat-start">
-          <div class="chat-image avatar">
-            <div
-              class="w-10 rounded-full bg-neutral-focus text-neutral-content flex items-center justify-center"
-            >
-              <span>U3</span>
-            </div>
-          </div>
-          <div class="chat-header text-xs opacity-50">
-            User 3
-            <time class="ml-1">10:40 AM</time>
-          </div>
-          <div class="chat-bubble chat-bubble-info">
-            I agree, very insightful.
-          </div>
-          <div class="chat-footer opacity-50">
-            <button class="btn btn-xs btn-ghost text-error">Delete</button>
-          </div>
-        </div>
+        }
       </div>
     </div>
+    }
   </div>
 </div>
 }
