@@ -23,8 +23,8 @@
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    @for (post of []; track $index) {
-    <app-post-list-item></app-post-list-item>
+    @for (post of posts; track $index) {
+    <app-post-list-item [post]="post"></app-post-list-item>
     }
   </div>
 </div>

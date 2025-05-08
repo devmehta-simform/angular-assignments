@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Post } from '../../types/post';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-post-list-item',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './post-list-item.component.html',
-  styleUrl: './post-list-item.component.css'
+  styleUrl: './post-list-item.component.css',
 })
 export class PostListItemComponent {
-
+  @Input({ required: true }) post!: Post;
 }
