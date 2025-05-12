@@ -24,11 +24,11 @@
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     @if(posts$ | async; as posts) { @for (post of posts; track $index) {
-    @if(!post.isDeleted){
+
     <app-post-list-item
       (deletePost)="handleDeletePost($event)"
       [post]="post"
     ></app-post-list-item>
-    } } }
+    } }
   </div>
 </div>

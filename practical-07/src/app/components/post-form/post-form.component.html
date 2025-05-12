@@ -39,7 +39,7 @@
           placeholder="Write your post content here..."
         ></textarea>
         @if(!body){
-        <p class="text-error">bodycsd *required</p>
+        <p class="text-error">body *required</p>
         }
       </div>
 
@@ -66,7 +66,7 @@
               d="M12 4.5v15m7.5-7.5h-15"
             />
           </svg>
-          Create Post
+          {{ id ? "Update" : "Create" }} Post
         </button>
       </div>
     </form>

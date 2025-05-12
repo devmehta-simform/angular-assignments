@@ -1,5 +1,5 @@
 export const environment = {
-  POSTS_API_URL: 'https://jsonplaceholder.typicode.com/posts',
-  COMMENTS_API_URL: 'https://jsonplaceholder.typicode.com/comments',
-  USERS_API_URL: 'https://jsonplaceholder.typicode.com/users',
+  POSTS_API_URL: 'http://localhost:3000/post',
+  COMMENTS_API_URL: 'http://localhost:3000/comment',
+  USERS_API_URL: 'http://localhost:3000/user',
 };

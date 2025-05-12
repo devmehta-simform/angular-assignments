@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PostService } from '../../services/post.service';
 import { Post } from '../../types/post';
-import { filter, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { CommentService } from '../../services/comment.service';
 import { Comment } from '../../types/comment';
@@ -27,13 +27,17 @@ export class PostDetailsComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
       if (id) {
-        this.post$ = this.postService.getPostById(id);
+        this.post$ = this.postService.getPostById(parseInt(id));
         this.comments$ = this.commentService.getAllCommentsForPost(id);
       }
     });
   }
 
-  deletePost(id: string) {
+  handleEditForm(id: number) {
+    this.router.navigate([`/post-form/${id}`]);
+  }
+
+  deletePost(id: number) {
     this.postService.deletePostById(id).subscribe(() => {
       this.router.navigate(['/posts']);
     });

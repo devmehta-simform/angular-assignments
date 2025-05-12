@@ -15,6 +15,10 @@ export const routes: Routes = [
     component: PostFormComponent,
   },
   {
+    path: 'post-form/:id',
+    component: PostFormComponent,
+  },
+  {
     path: 'post-details/:id',
     component: PostDetailsComponent,
   },

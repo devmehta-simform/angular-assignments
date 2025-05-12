@@ -20,6 +20,6 @@ export class PostListComponent {
   }
 
   handleDeletePost(id: string) {
-    this.posts$ = this.postService.deletePostById(id);
+    this.posts$ = this.postService.deletePostById(parseInt(id));
   }
 }
