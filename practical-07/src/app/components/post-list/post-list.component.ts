@@ -18,4 +18,8 @@ export class PostListComponent {
   constructor(private postService: PostService) {
     this.posts$ = this.postService.getAllPosts();
   }
+
+  handleDeletePost(id: string) {
+    this.posts$ = this.postService.deletePostById(id);
+  }
 }

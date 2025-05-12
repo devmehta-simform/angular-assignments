@@ -16,7 +16,10 @@
       <p class="text-xs text-base-content text-opacity-60 mt-3">
         Posted by {{ post.userId }}
       </p>
-      <button class="btn btn-error btn-sm btn-outline">
+      <button
+        class="btn btn-error btn-sm btn-outline"
+        (click)="handleDeletePost(post.id)"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

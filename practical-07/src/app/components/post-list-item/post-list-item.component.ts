@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Post } from '../../types/post';
 import { RouterLink } from '@angular/router';
 
@@ -10,4 +10,9 @@ import { RouterLink } from '@angular/router';
 })
 export class PostListItemComponent {
   @Input({ required: true }) post!: Post;
+  @Output() deletePost = new EventEmitter<string>();
+
+  handleDeletePost(id: string) {
+    this.deletePost.emit(id);
+  }
 }

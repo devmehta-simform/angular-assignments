@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PostService } from '../../services/post.service';
 import { Post } from '../../types/post';
-import { Observable } from 'rxjs';
+import { filter, Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { CommentService } from '../../services/comment.service';
 import { Comment } from '../../types/comment';
@@ -19,7 +19,8 @@ export class PostDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private postService: PostService,
-    private commentService: CommentService
+    private commentService: CommentService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -29,6 +30,12 @@ export class PostDetailsComponent implements OnInit {
         this.post$ = this.postService.getPostById(id);
         this.comments$ = this.commentService.getAllCommentsForPost(id);
       }
+    });
+  }
+
+  deletePost(id: string) {
+    this.postService.deletePostById(id).subscribe(() => {
+      this.router.navigate(['/posts']);
     });
   }
 }
