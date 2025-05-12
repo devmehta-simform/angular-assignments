@@ -71,28 +71,27 @@
           Leave a Comment
         </h4>
         <textarea
+          [(ngModel)]="commentBody"
           class="textarea textarea-bordered w-full"
           placeholder="Write a comment..."
           rows="3"
         ></textarea>
-        <button class="btn btn-accent mt-2">Add Comment</button>
+        <button
+          class="btn btn-accent mt-2"
+          (click)="createOrUpdateComment(post.id)"
+          [disabled]="!commentBody"
+        >
+          {{ comment ? "Update" : "Add" }} Comment
+        </button>
       </div>
 
       <div class="space-y-4">
         @for(comment of comments; track $index){
-        <div class="chat chat-start">
-          <div class="chat-header">
-            <span class="ml-1 text-xs opacity-50">{{ comment.email }}</span>
-          </div>
-          <div class="chat-bubble chat-bubble-info">
-            {{ comment.body }}
-          </div>
-
-          <div class="chat-footer opacity-50">
-            <button class="btn btn-xs btn-ghost textarea-primary">Edit</button>
-            <button class="btn btn-xs btn-ghost text-error">Delete</button>
-          </div>
-        </div>
+        <app-comment
+          [comment]="comment"
+          (editComment)="handleEditComment(comment)"
+          (deleteComment)="deleteComment(comment.postId, comment.id)"
+        ></app-comment>
         }
       </div>
     </div>
