@@ -4,7 +4,7 @@
       Create New Post
     </h2>
 
-    <form>
+    <form (ngSubmit)="handleFormSubmit()">
       <div class="mb-4">
         <label
           for="postTitle"
@@ -12,6 +12,7 @@
           >Title</label
         >
         <input
+          [(ngModel)]="title"
           type="text"
           id="postTitle"
           name="postTitle"
@@ -19,6 +20,9 @@
           placeholder="Enter post title"
           value=""
         />
+        @if(!title){
+        <p class="text-error">title *required</p>
+        }
       </div>
 
       <div class="mb-6">
@@ -28,18 +32,26 @@
           >Body</label
         >
         <textarea
+          [(ngModel)]="body"
           id="postBody"
           name="postBody"
           class="textarea textarea-bordered w-full h-40"
           placeholder="Write your post content here..."
         ></textarea>
+        @if(!body){
+        <p class="text-error">bodycsd *required</p>
+        }
       </div>
 
       <div class="flex flex-col sm:flex-row gap-3 justify-end">
         <a routerLink="/posts"
           ><button type="button" class="btn btn-ghost">Cancel</button></a
         >
-        <button type="submit" class="btn btn-primary">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!(title && body) || disableSubmit"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
