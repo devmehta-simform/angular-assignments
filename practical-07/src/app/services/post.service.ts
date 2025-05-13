@@ -37,4 +37,11 @@ export class PostService {
       })
     );
   }
+
+  searchPost(searchQuery: string, page: number, pageOffset: number) {
+    return this.httpClient.get<{ posts: Post[]; totalItems: number }>(
+      environment.POSTS_API_URL +
+        `?page=${page}&pageOffset=${pageOffset}&search=${searchQuery}`
+    );
+  }
 }
