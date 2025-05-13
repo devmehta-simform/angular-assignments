@@ -32,17 +32,16 @@
           Add New Post
         </button>
       </a>
-      <button class="btn" (click)="logoutUser()">logout</button>
+      <button class="btn btn-error btn-sm" (click)="logoutUser()">
+        logout
+      </button>
     </div>
   </div>
 
   @if(posts$ | async; as posts) {
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-3">
     @for (post of posts.posts; track $index) {
-    <app-post-list-item
-      (deletePost)="handleDeletePost($event)"
-      [post]="post"
-    ></app-post-list-item>
+    <app-post-list-item [post]="post"></app-post-list-item>
     }
   </div>
   <div

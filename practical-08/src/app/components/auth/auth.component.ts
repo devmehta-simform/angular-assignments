@@ -9,6 +9,7 @@ import {
 import { UserService } from '../../services/user.service';
 import { catchError, Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { User } from '../../types/user';
 
 @Component({
   selector: 'app-auth',
@@ -45,14 +46,16 @@ export class AuthComponent {
         .pipe(
           catchError((err) => {
             this.error = err.error;
-            return new Observable();
+            return new Observable<undefined>();
           })
         )
-        .subscribe(() => {
-          this.error = undefined;
-          this.userService.saveUser(form.email);
-          this.authForm.reset();
-          this.router.navigate(['/posts']);
+        .subscribe((user) => {
+          if (user) {
+            this.error = undefined;
+            this.userService.saveUser(user);
+            this.authForm.reset();
+            this.router.navigate(['/posts']);
+          }
         });
     } else {
       this.authForm.markAllAsTouched();

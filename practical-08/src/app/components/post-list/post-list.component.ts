@@ -34,6 +34,7 @@ export class PostListComponent {
         this.page,
         this.pageOffset
       );
+      this.page = 1;
     });
   }
 
@@ -80,10 +81,6 @@ export class PostListComponent {
 
   getTotalNumberOfPages(totalItems: number) {
     return Math.ceil(totalItems / this.pageOffset);
-  }
-
-  handleDeletePost(id: number) {
-    this.posts$ = this.postService.deletePostById(id);
   }
 
   logoutUser() {

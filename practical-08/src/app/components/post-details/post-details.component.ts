@@ -8,6 +8,8 @@ import { CommentService } from '../../services/comment.service';
 import { Comment } from '../../types/comment';
 import { CommentComponent } from '../comment/comment.component';
 import { FormsModule } from '@angular/forms';
+import { UserService } from '../../services/user.service';
+import { User } from '../../types/user';
 @Component({
   selector: 'app-post-details',
   imports: [RouterLink, AsyncPipe, CommentComponent, FormsModule],
@@ -19,11 +21,13 @@ export class PostDetailsComponent implements OnInit {
   comments$!: Observable<Comment[]>;
   commentBody: string = '';
   comment?: Comment;
+  user?: User;
 
   constructor(
     private route: ActivatedRoute,
     private postService: PostService,
     private commentService: CommentService,
+    private userService: UserService,
     private router: Router
   ) {}
 
@@ -35,6 +39,7 @@ export class PostDetailsComponent implements OnInit {
         this.comments$ = this.commentService.getAllCommentsForPost(
           parseInt(id)
         );
+        this.user = this.userService.getUser();
       }
     });
   }

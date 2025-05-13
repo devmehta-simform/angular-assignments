@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { PostService } from '../../services/post.service';
 import { merge, mergeMap, Observable, tap } from 'rxjs';
+import { UserService } from '../../services/user.service';
 @Component({
   selector: 'app-post-form',
   imports: [RouterLink, FormsModule],
@@ -17,6 +18,7 @@ export class PostFormComponent {
 
   constructor(
     private postService: PostService,
+    private userService: UserService,
     private router: Router,
     private route: ActivatedRoute
   ) {
@@ -43,20 +45,23 @@ export class PostFormComponent {
 
   handleFormSubmit() {
     this.disableSubmit = true;
-    let obs: Observable<unknown>;
+    let obs: Observable<unknown> | undefined = undefined;
     if (!this.id) {
-      obs = this.postService.createPost({
-        body: this.body,
-        title: this.title,
-        id: Date.now(),
-        userId: 1232,
-      });
+      const user = this.userService.getUser();
+      if (user) {
+        obs = this.postService.createPost({
+          body: this.body,
+          title: this.title,
+          id: Date.now(),
+          userId: user.id,
+        });
+      } else alert('login again');
     } else {
       obs = this.postService.updatePost(this.id, {
         title: this.title,
         body: this.body,
       });
     }
-    obs.subscribe(() => this.router.navigate(['/posts']));
+    if (obs) obs.subscribe(() => this.router.navigate(['/posts']));
   }
 }

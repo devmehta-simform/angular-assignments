@@ -6,6 +6,7 @@
     {{ comment.body }}
   </div>
 
+  @if(user && user.email===comment.email){
   <div class="chat-footer opacity-50">
     <button
       class="btn btn-xs btn-ghost textarea-primary"
@@ -17,4 +18,5 @@
       Delete
     </button>
   </div>
+  }
 </div>

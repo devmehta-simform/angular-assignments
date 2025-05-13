@@ -12,7 +12,7 @@ export class PostListItemComponent {
   @Input({ required: true }) post!: Post;
   @Output() deletePost = new EventEmitter<number>();
 
-  handleDeletePost(id: number) {
-    this.deletePost.emit(id);
-  }
+  // handleDeletePost(id: number) {
+  //   this.deletePost.emit(id);
+  // }
 }
