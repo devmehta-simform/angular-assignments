@@ -44,13 +44,13 @@ export class AuthComponent {
         .loginUser(form.email, form.password)
         .pipe(
           catchError((err) => {
-            console.log(err);
             this.error = err.error;
             return new Observable();
           })
         )
         .subscribe(() => {
           this.error = undefined;
+          this.userService.saveUser(form.email);
           this.authForm.reset();
           this.router.navigate(['/posts']);
         });

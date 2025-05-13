@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { PostListItemComponent } from '../post-list-item/post-list-item.component';
 import { Post } from '../../types/post';
 import { PostService } from '../../services/post.service';
 import { debounceTime, Observable, Subject } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-post-list',
@@ -20,7 +21,11 @@ export class PostListComponent {
   searchQuery$: Subject<string> = new Subject<string>();
   searchQuery = '';
 
-  constructor(private postService: PostService) {
+  constructor(
+    private postService: PostService,
+    private userService: UserService,
+    private router: Router
+  ) {
     this.posts$ = this.postService.getAllPosts(this.page, this.pageOffset);
     this.searchQuery$.pipe(debounceTime(500)).subscribe((searchQuery) => {
       this.searchQuery = searchQuery;
@@ -79,5 +84,10 @@ export class PostListComponent {
 
   handleDeletePost(id: number) {
     this.posts$ = this.postService.deletePostById(id);
+  }
+
+  logoutUser() {
+    this.userService.logoutUser();
+    this.router.navigate(['auth']);
   }
 }

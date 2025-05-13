@@ -14,4 +14,18 @@ export class UserService {
       password,
     });
   }
+
+  logoutUser() {
+    localStorage.removeItem('user');
+  }
+
+  saveUser(email: string) {
+    localStorage.setItem('user', JSON.stringify({ email }));
+  }
+
+  getUser(): { email: string } | undefined {
+    const user = localStorage.getItem('user');
+    if (user) return JSON.parse(user);
+    return undefined;
+  }
 }
