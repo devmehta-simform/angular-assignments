@@ -1,0 +1,50 @@
+<div class="min-h-screen flex items-center justify-center bg-base-200">
+  <div class="card w-full max-w-md shadow-md bg-base-100">
+    <div class="card-body">
+      <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
+      <form (ngSubmit)="handleLogin()" [formGroup]="authForm">
+        <fieldset class="fieldset">
+          <legend class="fieldset-legend">Email</legend>
+          <input
+            type="email"
+            class="input input-bordered"
+            placeholder="you@example.com"
+            name="email"
+            [formControl]="authForm.controls.email"
+            required
+          />
+          @if(authForm.controls.email.touched && authForm.controls.email.invalid
+          ){
+          <p class="label text-error">invalid email *required</p>
+          }
+        </fieldset>
+        <fieldset class="fieldset">
+          <legend class="fieldset-legend">Password</legend>
+          <input
+            type="password"
+            class="input input-bordered"
+            placeholder="********"
+            name="password"
+            [formControl]="authForm.controls.password"
+            required
+          />
+          @if(authForm.controls.password.touched &&
+          authForm.controls.password.invalid ){
+          <p class="label text-error">
+            invalid password min length 8 and max length 16 *required
+          </p>
+          }
+        </fieldset>
+
+        @if(error){
+        <p class="text-center text-error text-lg">{{ error }}</p>
+        }
+        <div class="form-control mt-6">
+          <button class="btn btn-primary w-full" [disabled]="authForm.invalid">
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
