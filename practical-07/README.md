@@ -2,6 +2,8 @@
 
 repository link: https://github.com/devmehta-simform/angular-assignments
 
+server repository link: https://github.com/devmehta-simform/mongodb-assignment
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
 
 ## Development server
