@@ -22,13 +22,47 @@
     </a>
   </div>
 
+  @if(posts$ | async; as posts) {
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    @if(posts$ | async; as posts) { @for (post of posts; track $index) {
-
+    @for (post of posts.posts; track $index) {
     <app-post-list-item
       (deletePost)="handleDeletePost($event)"
       [post]="post"
     ></app-post-list-item>
-    } }
+    }
   </div>
+  <div class="join flex justify-center items-center mt-8 space-x-4">
+    <button
+      class="btn"
+      (click)="getPreviousPage(posts.totalItems)"
+      [disabled]="page <= 1"
+    >
+      Previous
+    </button>
+
+    <div class="flex flex-row items-center join space-x-2">
+      <span class="text-sm font-medium">Page</span>
+
+      <input
+        type="number"
+        class="input input-bordered w-20 text-center h-10"
+        [(ngModel)]="page"
+        [min]="1"
+        [max]="getTotalNumberOfPages(posts.totalItems)"
+        (keydown.enter)="goToPage(posts.totalItems)"
+      />
+
+      <span class="text-sm font-medium">
+        / {{ getTotalNumberOfPages(posts.totalItems) }}
+      </span>
+
+      <button class="btn btn-sm" (click)="goToPage(posts.totalItems)">
+        Go
+      </button>
+    </div>
+
+    <button class="btn" (click)="getNextPage(posts.totalItems)">Next</button>
+  </div>
+
+  }
 </div>
