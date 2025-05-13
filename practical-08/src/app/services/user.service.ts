@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { User } from '../types/user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -24,9 +25,15 @@ export class UserService {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
-  getUser(): User | undefined {
-    const user = localStorage.getItem('user');
-    if (user) return JSON.parse(user);
-    return undefined;
+  getUser(): User | undefined;
+  getUser(id: number): Observable<User>;
+  getUser(id?: number): User | undefined | Observable<User> {
+    if (!id) {
+      const user = localStorage.getItem('user');
+      if (user) return JSON.parse(user);
+      return undefined;
+    } else {
+      return this.httpClient.get<User>(environment.USERS_API_URL + `/${id}`);
+    }
   }
 }

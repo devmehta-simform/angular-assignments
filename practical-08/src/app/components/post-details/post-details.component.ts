@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PostService } from '../../services/post.service';
 import { Post } from '../../types/post';
-import { Observable } from 'rxjs';
+import { Observable, of, switchMap, zip } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { CommentService } from '../../services/comment.service';
 import { Comment } from '../../types/comment';
@@ -17,7 +17,7 @@ import { User } from '../../types/user';
   styleUrl: './post-details.component.css',
 })
 export class PostDetailsComponent implements OnInit {
-  post$!: Observable<Post>;
+  post$!: Observable<[Post, User]>;
   comments$!: Observable<Comment[]>;
   commentBody: string = '';
   comment?: Comment;
@@ -35,7 +35,13 @@ export class PostDetailsComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
       if (id) {
-        this.post$ = this.postService.getPostById(parseInt(id));
+        this.post$ = this.postService
+          .getPostById(parseInt(id))
+          .pipe(
+            switchMap((post) =>
+              zip(of(post), this.userService.getUser(post.userId))
+            )
+          );
         this.comments$ = this.commentService.getAllCommentsForPost(
           parseInt(id)
         );
