@@ -1,5 +1,5 @@
 <div
-  class="max-w-sm bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out"
+  class="max-w-sm mx-auto bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out"
 >
   <img
     [src]="product.imageUrl"
@@ -14,7 +14,7 @@
     </h2>
 
     <p class="text-xl font-medium text-green-600 mb-3">
-      ${{ product.price | number }}
+      {{ product.price - (product.price * product.discount) / 100 | currency }}
     </p>
 
     <p class="text-sm text-gray-600 mb-5 line-clamp-3">
@@ -22,13 +22,14 @@
     </p>
     <div>
       <p class="text-sm text-red-600 font-semibold">
-        <span class="line-through text-gray-500 mr-2"
-          >${{ product.price | number }}</span
-        >
+        <span class="line-through text-gray-500 mr-2">{{
+          product.price | currency
+        }}</span>
         Save {{ product.discount }}% OFF
       </p>
     </div>
     <button
+      (click)="handleAddToCart(product)"
       class="w-full py-2 mt-4 text-white bg-blue-600 hover:bg-blue-700 rounded-md shadow-md hover:shadow-lg transition-all duration-300 focus:outline-none"
     >
       Add to Cart
