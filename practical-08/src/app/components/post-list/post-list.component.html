@@ -38,7 +38,7 @@
     </div>
   </div>
 
-  @if(posts$ | async; as posts) {
+  @if(posts$ | async; as posts) { @if(posts.posts.length){
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-3">
     @for (post of posts.posts; track $index) {
     <app-post-list-item [post]="post"></app-post-list-item>
@@ -78,5 +78,28 @@
 
     <button class="btn" (click)="getNextPage(posts.totalItems)">Next</button>
   </div>
-  }
+  } @else {
+  <div class="flex flex-col items-center justify-center p-10 text-center">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-16 h-16 text-red-400 mb-4"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M9.75 9.75L14.25 14.25M14.25 9.75L9.75 14.25M12 2.25C6.615 2.25 2.25 6.615 2.25 12s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25z"
+      />
+    </svg>
+    <p class="text-2xl font-semibold text-red-400 drop-shadow-md">
+      Nothing found :(
+    </p>
+    <p class="text-sm text-gray-500 mt-2">
+      Try adjusting your search or check back later.
+    </p>
+  </div>
+  } }
 </div>
