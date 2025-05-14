@@ -1,0 +1,22 @@
+<div class="chat chat-start">
+  <div class="chat-header">
+    <span class="ml-1 text-xs opacity-50">{{ comment.email }}</span>
+  </div>
+  <div class="chat-bubble chat-bubble-info">
+    {{ comment.body }}
+  </div>
+
+  @if(user && user.email===comment.email){
+  <div class="chat-footer opacity-50">
+    <button
+      class="btn btn-xs btn-ghost textarea-primary"
+      (click)="handleEdit()"
+    >
+      Edit
+    </button>
+    <button class="btn btn-xs btn-ghost text-error" (click)="handleDelete()">
+      Delete
+    </button>
+  </div>
+  }
+</div>
