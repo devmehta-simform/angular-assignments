@@ -28,13 +28,15 @@ export class PostListComponent {
   ) {
     this.posts$ = this.postService.getAllPosts(this.page, this.pageOffset);
     this.searchQuery$.pipe(debounceTime(500)).subscribe((searchQuery) => {
-      this.searchQuery = searchQuery;
-      this.posts$ = this.postService.searchPost(
-        searchQuery,
-        this.page,
-        this.pageOffset
-      );
-      this.page = 1;
+      this.searchQuery = searchQuery.trim();
+      if (this.searchQuery) {
+        this.posts$ = this.postService.searchPost(
+          searchQuery,
+          this.page,
+          this.pageOffset
+        );
+        this.page = 1;
+      }
     });
   }
 
