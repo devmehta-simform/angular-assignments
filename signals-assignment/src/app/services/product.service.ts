@@ -5,7 +5,7 @@ import { Product } from '../types/product';
   providedIn: 'root',
 })
 export class ProductService {
-  products = signal<Product[]>([
+  private products = signal<Product[]>([
     {
       id: 1,
       name: 'Wireless Earbuds',
