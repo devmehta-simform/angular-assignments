@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { Product } from '../types/product';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,7 @@ export class CartService {
   private cart = signal<Product[]>([]);
   private numberOfItemsInCart = signal(0);
 
-  constructor() {}
+  constructor(private notificationService: NotificationService) {}
 
   private updateNumberOfItemsInCart() {
     this.numberOfItemsInCart.set(this.cart().length);
@@ -17,6 +18,7 @@ export class CartService {
   addItemToCart(product: Product) {
     this.cart.update((oldCart) => [...oldCart, product]);
     this.updateNumberOfItemsInCart();
+    this.notificationService.showNotification('cart updated!');
   }
 
   getAllCartItems() {
@@ -34,6 +36,7 @@ export class CartService {
       tmpCart.splice(ind, 1);
       this.cart.set(tmpCart);
       this.updateNumberOfItemsInCart();
+      this.notificationService.showNotification('cart updated!');
     }
   }
 }
